@@ -1,0 +1,1325 @@
+// converted by version 1.3
+// on Thu Jun 29 17:51:02 ICT 2023
+
+.package SmartCard {
+	.aid 0x0:0x0:0x0:0x0:0x0;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.2;		//javacard/security
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x1 1.2;		//javacardx/crypto
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+	}
+
+	.applet {
+		0x0:0x0:0x0:0x0:0x0:0x0 SmartCard;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef short Aes/keyLen;
+		// 1
+		instanceFieldRef byte[] Aes/temp;
+		// 2
+		instanceFieldRef 2.1 Aes/cipher;
+		// 3
+		instanceFieldRef 1.20 Aes/aesKey;
+		// 4
+		instanceFieldRef byte[] Pin/PIN_DEFAULT;
+		// 5
+		instanceFieldRef byte[] Pin/pin;
+		// 6
+		instanceFieldRef byte Pin/remaining;
+		// 7
+		instanceFieldRef 1.11 Pin/messageDigest;
+		// 8
+		instanceFieldRef short SmartCard/SW_UPDATE_FALSE;
+		// 9
+		instanceFieldRef boolean SmartCard/isLock;
+		// 10
+		instanceFieldRef boolean SmartCard/isFistUpdatePin;
+		// 11
+		instanceFieldRef Pin SmartCard/pin;
+		// 12
+		instanceFieldRef Aes SmartCard/aes;
+		// 13
+		instanceFieldRef byte[] SmartCard/avatar;
+		// 14
+		instanceFieldRef short SmartCard/avatarLen;
+		// 15
+		instanceFieldRef short SmartCard/idLen;
+		// 16
+		instanceFieldRef byte[] SmartCard/id;
+		// 17
+		instanceFieldRef short SmartCard/fullNameLen;
+		// 18
+		instanceFieldRef byte[] SmartCard/fullName;
+		// 19
+		instanceFieldRef short SmartCard/birthDayLen;
+		// 20
+		instanceFieldRef byte[] SmartCard/birthDay;
+		// 21
+		instanceFieldRef short SmartCard/addressLen;
+		// 22
+		instanceFieldRef byte[] SmartCard/address;
+		// 23
+		instanceFieldRef short SmartCard/numberPhoneLen;
+		// 24
+		instanceFieldRef byte[] SmartCard/numberPhone;
+		// 25
+		instanceFieldRef short SmartCard/gmailLen;
+		// 26
+		instanceFieldRef byte[] SmartCard/gmail;
+		// 27
+		instanceFieldRef short SmartCard/positionLen;
+		// 28
+		instanceFieldRef byte[] SmartCard/position;
+		// 29
+		instanceFieldRef short SmartCard/departmentLen;
+		// 30
+		instanceFieldRef byte[] SmartCard/department;
+		// 31
+		instanceFieldRef short SmartCard/genderLen;
+		// 32
+		instanceFieldRef byte[] SmartCard/gender;
+		// 33
+		instanceFieldRef short SmartCard/cardIdLen;
+		// 34
+		instanceFieldRef byte[] SmartCard/cardId;
+		// 35
+		staticMethodRef 3.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 36
+		virtualMethodRef 3.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 37
+		virtualMethodRef 3.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 38
+		virtualMethodRef 3.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
+		// 39
+		virtualMethodRef Pin/resetPin()V;
+		// 40
+		virtualMethodRef Pin/checkPin([BSS)Z;
+		// 41
+		virtualMethodRef Pin/getRemaining()B;
+		// 42
+		virtualMethodRef SmartCard/updatePin([BS)V;
+		// 43
+		virtualMethodRef SmartCard/checkPin(Ljavacard/framework/APDU;[BB)V;
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+		// 44
+		virtualMethodRef SmartCard/input(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+		// 45
+		virtualMethodRef SmartCard/output(Ljavacard/framework/APDU;[B)V;
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+		// 46
+		virtualMethodRef SmartCard/inputAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+		// 47
+		virtualMethodRef SmartCard/outputAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+		// 48
+		staticMethodRef 3.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 49
+		virtualMethodRef Pin/updatePin([BSS)Z;
+		// 50
+		virtualMethodRef Pin/getPin()[B;
+		// 51
+		virtualMethodRef Aes/setKey([B)V;
+		// 52
+		staticMethodRef 3.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 53
+		staticMethodRef 1.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 54
+		staticMethodRef 1.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	1.11;
+
+		// 55
+		virtualMethodRef Aes/encrypt([BSS[BS)V;
+		// 56
+		classRef 1.20;		// javacard/security/AESKey
+		// 57
+		virtualMethodRef 1.11.1([BSS[BS)S;		// javacard/security/MessageDigest.doFinal([BSS[BS)S
+		// 58
+		virtualMethodRef 1.11.4()V;		// javacard/security/MessageDigest.reset()V
+		// 59
+		staticMethodRef 3.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+		// 60
+		classRef SmartCard;
+		// 61
+		staticMethodRef SmartCard/<init>([BSB)V;
+		// 62
+		staticMethodRef 3.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 63
+		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
+		// 64
+		virtualMethodRef 3.3.1()V;		// javacard/framework/Applet.register()V
+		// 65
+		staticMethodRef 3.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 66
+		virtualMethodRef 2.1.3(Ljavacard/security/Key;B)V;		// javacardx/crypto/Cipher.init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 67
+		classRef Pin;
+		// 68
+		staticMethodRef Pin/<init>()V;
+		// 69
+		virtualMethodRef 2.1.1([BSS[BS)S;		// javacardx/crypto/Cipher.doFinal([BSS[BS)S
+		// 70
+		classRef Aes;
+		// 71
+		staticMethodRef Aes/<init>()V;
+		// 72
+		virtualMethodRef 2.1.5([BSS[BS)S;		// javacardx/crypto/Cipher.update([BSS[BS)S
+		// 73
+		staticMethodRef 2.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	2.1;
+
+		// 74
+		virtualMethodRef 3.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		// 75
+		virtualMethodRef Aes/decrypt([BSS[BS)V;
+		// 76
+		virtualMethodRef 3.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		// 77
+		virtualMethodRef 3.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
+		// 78
+		staticMethodRef 3.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 79
+		virtualMethodRef 3.10.4(SS)V;		// javacard/framework/APDU.sendBytes(SS)V
+	}
+
+	.class public Aes 0 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private 1.20 aesKey 0;		// Ljavacard/security/AESKey;
+			private 2.1 cipher 1;		// Ljavacardx/crypto/Cipher;
+			private byte[] temp 2;		// [B
+			private final short keyLen 3;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			setKey([B)V;
+			encrypt([BSS[BS)V;
+			decrypt([BSS[BS)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 4;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 63;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 16;
+					putfield_s 0;		// short SmartCard/Aes.keyLen
+					aload_0;
+					bspush 16;
+					sconst_1;
+					invokestatic 35;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 1;		// reference SmartCard/Aes.temp
+					aload_0;
+					bspush 14;
+					sconst_0;
+					invokestatic 73;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 2;		// reference SmartCard/Aes.cipher
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 53;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 56;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 3;		// reference SmartCard/Aes.aesKey
+					return;
+		}
+
+		.method public setKey([B)V 1 {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_1;
+					arraylength;
+					bspush 16;
+					if_scmpge L2;
+				L1:	sspush 26368;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 3;		// reference SmartCard/Aes.aesKey
+					aload_1;
+					sconst_0;
+					invokeinterface 3 56 4;		// javacard/security/AESKey
+					return;
+		}
+
+		.method public encrypt([BSS[BS)V 2 {
+			.stack 6;
+			.locals 2;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 26368;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	sload_3;
+					bspush 16;
+					srem;
+					sstore 6;
+				L3:	sload_3;
+					bspush 16;
+					sdiv;
+					sstore 7;
+				L4:	getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					getfield_a_this 3;		// reference SmartCard/Aes.aesKey
+					sconst_2;
+					invokevirtual 66;		// javacardx/crypto/Cipher.init(Ljavacard/security/Key;B)V
+					sload 6;
+					ifne L6;
+				L5:	getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sload 5;
+					invokevirtual 69;		// javacardx/crypto/Cipher.doFinal([BSS[BS)S
+					pop;
+					goto L7;
+				L6:	sinc 7 1;
+					getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sload 5;
+					invokevirtual 72;		// javacardx/crypto/Cipher.update([BSS[BS)S
+					pop;
+					getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					getfield_a_this 1;		// reference SmartCard/Aes.temp
+					sconst_0;
+					bspush 16;
+					sload 6;
+					ssub;
+					aload 4;
+					sload 5;
+					invokevirtual 69;		// javacardx/crypto/Cipher.doFinal([BSS[BS)S
+					pop;
+				L7:	return;
+		}
+
+		.method public decrypt([BSS[BS)V 3 {
+			.stack 6;
+			.locals 0;
+
+				L0:	sload_3;
+					bspush 16;
+					srem;
+					ifeq L2;
+				L1:	sspush 26368;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					getfield_a_this 3;		// reference SmartCard/Aes.aesKey
+					sconst_1;
+					invokevirtual 66;		// javacardx/crypto/Cipher.init(Ljavacard/security/Key;B)V
+					getfield_a_this 2;		// reference SmartCard/Aes.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sload 5;
+					invokevirtual 69;		// javacardx/crypto/Cipher.doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+	}
+
+	.class public Pin 1 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] PIN_DEFAULT 0;		// [B
+			private byte[] pin 1;		// [B
+			private final 1.11 messageDigest 2;		// Ljavacard/security/MessageDigest;
+			private byte remaining 3;		// B
+			private static final short MAX_TRY = 3;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			checkPin([BSS)Z;
+			updatePin([BSS)Z;
+			resetPin()V;
+			getPin()[B;
+			getRemaining()B;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 6;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 63;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 6;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 49;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 50;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 51;
+					bastore;
+					dup;
+					sconst_3;
+					bspush 52;
+					bastore;
+					dup;
+					sconst_4;
+					bspush 53;
+					bastore;
+					dup;
+					sconst_5;
+					bspush 54;
+					bastore;
+					putfield_a 4;		// reference SmartCard/Pin.PIN_DEFAULT
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 5;		// reference SmartCard/Pin.pin
+					aload_0;
+					sconst_3;
+					putfield_b 6;		// byte SmartCard/Pin.remaining
+					aload_0;
+					sconst_2;
+					sconst_0;
+					invokestatic 54;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 7;		// reference SmartCard/Pin.messageDigest
+					getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					getfield_a_this 4;		// reference SmartCard/Pin.PIN_DEFAULT
+					sconst_0;
+					getfield_a_this 4;		// reference SmartCard/Pin.PIN_DEFAULT
+					arraylength;
+					getfield_a_this 5;		// reference SmartCard/Pin.pin
+					sconst_0;
+					invokevirtual 57;		// javacard/security/MessageDigest.doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public checkPin([BSS)Z 1 {
+			.stack 6;
+			.locals 1;
+
+				L0:	getfield_b_this 6;		// byte SmartCard/Pin.remaining
+					ifgt L2;
+				L1:	sconst_0;
+					sreturn;
+				L2:	bspush 16;
+					newarray 11;
+					astore 4;
+				L3:	getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					invokevirtual 58;		// javacard/security/MessageDigest.reset()V
+					getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sconst_0;
+					invokevirtual 57;		// javacard/security/MessageDigest.doFinal([BSS[BS)S
+					pop;
+					aload 4;
+					sconst_0;
+					getfield_a_this 5;		// reference SmartCard/Pin.pin
+					sconst_0;
+					getfield_a_this 5;		// reference SmartCard/Pin.pin
+					arraylength;
+					invokestatic 59;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifne L5;
+				L4:	aload_0;
+					sconst_3;
+					putfield_b 6;		// byte SmartCard/Pin.remaining
+					sconst_1;
+					sreturn;
+				L5:	aload_0;
+					dup;
+					getfield_b 6;		// byte SmartCard/Pin.remaining
+					sconst_1;
+					ssub;
+					s2b;
+					putfield_b 6;		// byte SmartCard/Pin.remaining
+					sconst_0;
+					sreturn;
+		}
+
+		.method public updatePin([BSS)Z 2 {
+			.stack 6;
+			.locals 0;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 27264;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					invokevirtual 58;		// javacard/security/MessageDigest.reset()V
+					getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 5;		// reference SmartCard/Pin.pin
+					sconst_0;
+					invokevirtual 57;		// javacard/security/MessageDigest.doFinal([BSS[BS)S
+					pop;
+					aload_0;
+					sconst_3;
+					putfield_b 6;		// byte SmartCard/Pin.remaining
+					sconst_1;
+					sreturn;
+		}
+
+		.method public resetPin()V 3 {
+			.stack 6;
+			.locals 0;
+
+				L0:	getfield_a_this 7;		// reference SmartCard/Pin.messageDigest
+					getfield_a_this 4;		// reference SmartCard/Pin.PIN_DEFAULT
+					sconst_0;
+					getfield_a_this 4;		// reference SmartCard/Pin.PIN_DEFAULT
+					arraylength;
+					getfield_a_this 5;		// reference SmartCard/Pin.pin
+					sconst_0;
+					invokevirtual 57;		// javacard/security/MessageDigest.doFinal([BSS[BS)S
+					pop;
+					aload_0;
+					sconst_3;
+					putfield_b 6;		// byte SmartCard/Pin.remaining
+					return;
+		}
+
+		.method public getPin()[B 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 5;		// reference SmartCard/Pin.pin
+					areturn;
+		}
+
+		.method public getRemaining()B 5 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 6;		// byte SmartCard/Pin.remaining
+					sreturn;
+		}
+
+	}
+
+	.class public SmartCard 2 extends 3.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private Pin pin 0;		// LSmartCard/Pin;
+			private Aes aes 1;		// LSmartCard/Aes;
+			 byte[] id 2;		// [B
+			 byte[] cardId 3;		// [B
+			 byte[] fullName 4;		// [B
+			 byte[] birthDay 5;		// [B
+			 byte[] address 6;		// [B
+			 byte[] numberPhone 7;		// [B
+			 byte[] gmail 8;		// [B
+			 byte[] avatar 9;		// [B
+			 byte[] position 10;		// [B
+			 byte[] department 11;		// [B
+			 byte[] gender 12;		// [B
+			private final short SW_UPDATE_FALSE 13;		// S
+			 boolean isLock 14;		// Z
+			 boolean isFistUpdatePin 15;		// Z
+			 short idLen 16;		// S
+			 short cardIdLen 17;		// S
+			 short fullNameLen 18;		// S
+			 short birthDayLen 19;		// S
+			 short addressLen 20;		// S
+			 short numberPhoneLen 21;		// S
+			 short gmailLen 22;		// S
+			 short avatarLen 23;		// S
+			 short positionLen 24;		// S
+			 short departmentLen 25;		// S
+			 short genderLen 26;		// S
+			static final short SW_LEN_OUT = -28415;		// S
+			static final short SW_LOCK = -28159;		// S
+			static final byte INS_PIN_UPDATE = 0;		// B
+			static final byte INS_PIN_CHECK = 1;		// B
+			static final byte INS_INPUT = 2;		// B
+			static final byte INS_OUTPUT = 3;		// B
+			static final byte INS_IN_OUT_AVATAR = 4;		// B
+			static final byte INS_RESET_PIN = 5;		// B
+			static final byte INS_CHECK_RESET_PIN = 6;		// B
+			static final byte P1_ID = 0;		// B
+			static final byte P1_FULLNAME = 1;		// B
+			static final byte P1_BIRTHDAY = 2;		// B
+			static final byte P1_ADDRESS = 3;		// B
+			static final byte P1_NUMBERPHONE = 4;		// B
+			static final byte P1_GMAIL = 5;		// B
+			static final byte P1_POSITION = 6;		// B
+			static final byte P1_DEPARTMENT = 7;		// B
+			static final byte P1_GENDER = 8;		// B
+			static final byte P1_CARDID = 9;		// B
+			static final byte P1_IN_AVATAR = 0;		// B
+			static final byte P1_OUT_AVARTAR = 1;		// B
+			static final short MAX_SIZE = 3072;		// S
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+			updatePin([BS)V;
+			checkPin(Ljavacard/framework/APDU;[BB)V;
+			input(Ljavacard/framework/APDU;)V;
+			output(Ljavacard/framework/APDU;[B)V;
+			inputAvatar(Ljavacard/framework/APDU;)V;
+			outputAvatar(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 6;
+			.locals 0;
+
+				L0:	new 60;		// SmartCard/SmartCard
+					dup;
+					aload_0;
+					sload_1;
+					aload_0;
+					sload_1;
+					baload;
+					invokespecial 61;		// SmartCard/SmartCard.<init>([BSB)V
+					pop;
+					return;
+		}
+
+		.method private <init>([BSB)V {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 62;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					sspush -28414;
+					putfield_s 8;		// short SmartCard/SmartCard.SW_UPDATE_FALSE
+					aload_0;
+					invokevirtual 64;		// javacard/framework/Applet.register()V
+					aload_0;
+					sconst_0;
+					putfield_b 9;		// boolean SmartCard/SmartCard.isLock
+					aload_0;
+					sconst_1;
+					putfield_b 10;		// boolean SmartCard/SmartCard.isFistUpdatePin
+					aload_0;
+					new 67;		// SmartCard/Pin
+					dup;
+					invokespecial 68;		// SmartCard/Pin.<init>()V
+					putfield_a 11;		// reference SmartCard/SmartCard.pin
+					aload_0;
+					new 70;		// SmartCard/Aes
+					dup;
+					invokespecial 71;		// SmartCard/Aes.<init>()V
+					putfield_a 12;		// reference SmartCard/SmartCard.aes
+					aload_0;
+					sspush 3072;
+					newarray 11;
+					putfield_a 13;		// reference SmartCard/SmartCard.avatar
+					aload_0;
+					sconst_0;
+					putfield_s 14;		// short SmartCard/SmartCard.avatarLen
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	aload_0;
+					invokevirtual 36;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 37;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_1;
+					baload;
+					sconst_5;
+					if_scmpne L5;
+				L4:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					invokevirtual 39;		// SmartCard/Pin.resetPin()V
+					return;
+				L5:	aload_2;
+					sconst_1;
+					baload;
+					bspush 6;
+					if_scmpne L15;
+				L6:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L7:	getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					aload_2;
+					sconst_5;
+					sload_3;
+					invokevirtual 40;		// SmartCard/Pin.checkPin([BSS)Z
+					ifne L13;
+				L8:	getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					invokevirtual 41;		// SmartCard/Pin.getRemaining()B
+					sstore 4;
+				L9:	sload 4;
+					ifgt L11;
+				L10:	aload_0;
+					sconst_1;
+					putfield_b 9;		// boolean SmartCard/SmartCard.isLock
+					sspush -28159;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+					goto L12;
+				L11:	sspush 27264;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	goto L14;
+				L13:	aload_0;
+					sconst_0;
+					putfield_b 9;		// boolean SmartCard/SmartCard.isLock
+				L14:	return;
+				L15:	getfield_b_this 9;		// boolean SmartCard/SmartCard.isLock
+					ifeq L17;
+				L16:	sspush -28159;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L17:	aload_2;
+					sconst_1;
+					baload;
+					stableswitch L28 0 4 L18 L20 L22 L23 L24;
+				L18:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					s2b;
+					sstore_3;
+				L19:	aload_0;
+					aload_2;
+					sload_3;
+					invokevirtual 42;		// SmartCard/SmartCard.updatePin([BS)V
+					goto L29;
+				L20:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					s2b;
+					sstore 4;
+				L21:	aload_0;
+					aload_1;
+					aload_2;
+					sload 4;
+					invokevirtual 43;		// SmartCard/SmartCard.checkPin(Ljavacard/framework/APDU;[BB)V
+					goto L29;
+				L22:	aload_0;
+					aload_1;
+					invokevirtual 44;		// SmartCard/SmartCard.input(Ljavacard/framework/APDU;)V
+					goto L29;
+				L23:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_0;
+					aload_1;
+					aload_2;
+					invokevirtual 45;		// SmartCard/SmartCard.output(Ljavacard/framework/APDU;[B)V
+					goto L29;
+				L24:	aload_2;
+					sconst_2;
+					baload;
+					slookupswitch L27 2 0 L25 1 L26;
+				L25:	aload_0;
+					aload_1;
+					invokevirtual 46;		// SmartCard/SmartCard.inputAvatar(Ljavacard/framework/APDU;)V
+					goto L29;
+				L26:	aload_0;
+					aload_1;
+					invokevirtual 47;		// SmartCard/SmartCard.outputAvatar(Ljavacard/framework/APDU;)V
+					goto L29;
+				L27:	sspush 27270;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+					goto L29;
+				L28:	sspush 27904;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L29:	return;
+		}
+
+		.method public updatePin([BS)V 8 {
+			.stack 4;
+			.locals 0;
+
+				L0:	invokestatic 48;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					aload_1;
+					sconst_5;
+					sload_2;
+					invokevirtual 49;		// SmartCard/Pin.updatePin([BSS)Z
+					ifne L2;
+				L1:	sspush -28414;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_b_this 10;		// boolean SmartCard/SmartCard.isFistUpdatePin
+					ifeq L4;
+				L3:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					invokevirtual 50;		// SmartCard/Pin.getPin()[B
+					invokevirtual 51;		// SmartCard/Aes.setKey([B)V
+					aload_0;
+					sconst_0;
+					putfield_b 10;		// boolean SmartCard/SmartCard.isFistUpdatePin
+				L4:	invokestatic 52;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method public checkPin(Ljavacard/framework/APDU;[BB)V 9 {
+			.stack 4;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					aload_2;
+					sconst_5;
+					sload_3;
+					invokevirtual 40;		// SmartCard/Pin.checkPin([BSS)Z
+					ifne L5;
+				L1:	getfield_a_this 11;		// reference SmartCard/SmartCard.pin
+					invokevirtual 41;		// SmartCard/Pin.getRemaining()B
+					sstore 4;
+				L2:	sload 4;
+					ifgt L4;
+				L3:	aload_0;
+					sconst_1;
+					putfield_b 9;		// boolean SmartCard/SmartCard.isLock
+					sspush -28159;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+					goto L5;
+				L4:	sspush 27264;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	return;
+		}
+
+		.method public input(Ljavacard/framework/APDU;)V 10 {
+			.stack 6;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	aload_1;
+					invokevirtual 37;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					sstore_3;
+				L2:	sload_3;
+					bspush 16;
+					sdiv;
+					sstore 4;
+				L3:	sload_3;
+					bspush 16;
+					srem;
+					sstore 5;
+				L4:	sload 5;
+					ifeq L6;
+				L5:	sinc 4 1;
+				L6:	aload_2;
+					sconst_2;
+					baload;
+					stableswitch L17 0 9 L7 L8 L9 L10 L11 L12 L13 L14 L15 L16;
+				L7:	aload_0;
+					sload_3;
+					putfield_s 15;		// short SmartCard/SmartCard.idLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 16;		// reference SmartCard/SmartCard.id
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 15;		// short SmartCard/SmartCard.idLen
+					getfield_a_this 16;		// reference SmartCard/SmartCard.id
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L8:	aload_0;
+					sload_3;
+					putfield_s 17;		// short SmartCard/SmartCard.fullNameLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 18;		// reference SmartCard/SmartCard.fullName
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 17;		// short SmartCard/SmartCard.fullNameLen
+					getfield_a_this 18;		// reference SmartCard/SmartCard.fullName
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L9:	aload_0;
+					sload_3;
+					putfield_s 19;		// short SmartCard/SmartCard.birthDayLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 20;		// reference SmartCard/SmartCard.birthDay
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 19;		// short SmartCard/SmartCard.birthDayLen
+					getfield_a_this 20;		// reference SmartCard/SmartCard.birthDay
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L10:	aload_0;
+					sload_3;
+					putfield_s 21;		// short SmartCard/SmartCard.addressLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 22;		// reference SmartCard/SmartCard.address
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 21;		// short SmartCard/SmartCard.addressLen
+					getfield_a_this 22;		// reference SmartCard/SmartCard.address
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L11:	aload_0;
+					sload_3;
+					putfield_s 23;		// short SmartCard/SmartCard.numberPhoneLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 24;		// reference SmartCard/SmartCard.numberPhone
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 23;		// short SmartCard/SmartCard.numberPhoneLen
+					getfield_a_this 24;		// reference SmartCard/SmartCard.numberPhone
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L12:	aload_0;
+					sload_3;
+					putfield_s 25;		// short SmartCard/SmartCard.gmailLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 26;		// reference SmartCard/SmartCard.gmail
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 25;		// short SmartCard/SmartCard.gmailLen
+					getfield_a_this 26;		// reference SmartCard/SmartCard.gmail
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto_w L18;
+				L13:	aload_0;
+					sload_3;
+					putfield_s 27;		// short SmartCard/SmartCard.positionLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 28;		// reference SmartCard/SmartCard.position
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 27;		// short SmartCard/SmartCard.positionLen
+					getfield_a_this 28;		// reference SmartCard/SmartCard.position
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto L18;
+				L14:	aload_0;
+					sload_3;
+					putfield_s 29;		// short SmartCard/SmartCard.departmentLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 30;		// reference SmartCard/SmartCard.department
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 29;		// short SmartCard/SmartCard.departmentLen
+					getfield_a_this 30;		// reference SmartCard/SmartCard.department
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto L18;
+				L15:	aload_0;
+					sload_3;
+					putfield_s 31;		// short SmartCard/SmartCard.genderLen
+					aload_0;
+					sload 4;
+					bspush 16;
+					smul;
+					newarray 11;
+					putfield_a 32;		// reference SmartCard/SmartCard.gender
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 31;		// short SmartCard/SmartCard.genderLen
+					getfield_a_this 32;		// reference SmartCard/SmartCard.gender
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto L18;
+				L16:	aload_0;
+					sload_3;
+					putfield_s 33;		// short SmartCard/SmartCard.cardIdLen
+					aload_0;
+					getfield_s_this 33;		// short SmartCard/SmartCard.cardIdLen
+					newarray 11;
+					putfield_a 34;		// reference SmartCard/SmartCard.cardId
+					getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					aload_2;
+					sconst_5;
+					getfield_s_this 33;		// short SmartCard/SmartCard.cardIdLen
+					getfield_a_this 34;		// reference SmartCard/SmartCard.cardId
+					sconst_0;
+					invokevirtual 55;		// SmartCard/Aes.encrypt([BSS[BS)V
+					goto L18;
+				L17:	sspush 27270;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L18:	return;
+		}
+
+		.method public output(Ljavacard/framework/APDU;[B)V 11 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	aload_1;
+					invokevirtual 74;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_2;
+					sconst_2;
+					baload;
+					stableswitch L11 0 9 L1 L2 L3 L4 L5 L6 L7 L8 L9 L10;
+				L1:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 16;		// reference SmartCard/SmartCard.id
+					sconst_0;
+					getfield_a_this 16;		// reference SmartCard/SmartCard.id
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 15;		// short SmartCard/SmartCard.idLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 15;		// short SmartCard/SmartCard.idLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L2:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 18;		// reference SmartCard/SmartCard.fullName
+					sconst_0;
+					getfield_a_this 18;		// reference SmartCard/SmartCard.fullName
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 17;		// short SmartCard/SmartCard.fullNameLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 17;		// short SmartCard/SmartCard.fullNameLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L3:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 20;		// reference SmartCard/SmartCard.birthDay
+					sconst_0;
+					getfield_a_this 20;		// reference SmartCard/SmartCard.birthDay
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 19;		// short SmartCard/SmartCard.birthDayLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 19;		// short SmartCard/SmartCard.birthDayLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L4:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 22;		// reference SmartCard/SmartCard.address
+					sconst_0;
+					getfield_a_this 22;		// reference SmartCard/SmartCard.address
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 21;		// short SmartCard/SmartCard.addressLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 21;		// short SmartCard/SmartCard.addressLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L5:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 24;		// reference SmartCard/SmartCard.numberPhone
+					sconst_0;
+					getfield_a_this 24;		// reference SmartCard/SmartCard.numberPhone
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 23;		// short SmartCard/SmartCard.numberPhoneLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 23;		// short SmartCard/SmartCard.numberPhoneLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L6:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 26;		// reference SmartCard/SmartCard.gmail
+					sconst_0;
+					getfield_a_this 26;		// reference SmartCard/SmartCard.gmail
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 25;		// short SmartCard/SmartCard.gmailLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 25;		// short SmartCard/SmartCard.gmailLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L12;
+				L7:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 28;		// reference SmartCard/SmartCard.position
+					sconst_0;
+					getfield_a_this 28;		// reference SmartCard/SmartCard.position
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 27;		// short SmartCard/SmartCard.positionLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 27;		// short SmartCard/SmartCard.positionLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L12;
+				L8:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 30;		// reference SmartCard/SmartCard.department
+					sconst_0;
+					getfield_a_this 30;		// reference SmartCard/SmartCard.department
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 29;		// short SmartCard/SmartCard.departmentLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 29;		// short SmartCard/SmartCard.departmentLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L12;
+				L9:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 32;		// reference SmartCard/SmartCard.gender
+					sconst_0;
+					getfield_a_this 32;		// reference SmartCard/SmartCard.gender
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 31;		// short SmartCard/SmartCard.genderLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 31;		// short SmartCard/SmartCard.genderLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L12;
+				L10:	getfield_a_this 12;		// reference SmartCard/SmartCard.aes
+					getfield_a_this 34;		// reference SmartCard/SmartCard.cardId
+					sconst_0;
+					getfield_a_this 34;		// reference SmartCard/SmartCard.cardId
+					arraylength;
+					aload_2;
+					sconst_0;
+					invokevirtual 75;		// SmartCard/Aes.decrypt([BSS[BS)V
+					aload_1;
+					getfield_s_this 33;		// short SmartCard/SmartCard.cardIdLen
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					aload_2;
+					sconst_0;
+					getfield_s_this 33;		// short SmartCard/SmartCard.cardIdLen
+					invokevirtual 77;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L12;
+				L11:	sspush 27270;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	return;
+		}
+
+		.method public inputAvatar(Ljavacard/framework/APDU;)V 12 {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	aload_1;
+					invokevirtual 37;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					sstore_3;
+				L2:	aload_2;
+					sconst_3;
+					baload;
+					ifne L4;
+				L3:	aload_2;
+					sconst_5;
+					getfield_a_this 13;		// reference SmartCard/SmartCard.avatar
+					sconst_0;
+					sload_3;
+					invokestatic 78;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					sload_3;
+					putfield_s 14;		// short SmartCard/SmartCard.avatarLen
+					goto L5;
+				L4:	aload_2;
+					sconst_5;
+					getfield_a_this 13;		// reference SmartCard/SmartCard.avatar
+					getfield_s_this 14;		// short SmartCard/SmartCard.avatarLen
+					sload_3;
+					invokestatic 78;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 14;		// short SmartCard/SmartCard.avatarLen
+					sload_3;
+					sadd;
+					putfield_s 14;		// short SmartCard/SmartCard.avatarLen
+				L5:	return;
+		}
+
+		.method public outputAvatar(Ljavacard/framework/APDU;)V 13 {
+			.stack 5;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	3.10;
+
+				L0:	aload_1;
+					invokevirtual 37;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 38;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_3;
+					baload;
+					sstore_3;
+				L2:	aload_2;
+					sconst_3;
+					baload;
+					sstore 4;
+				L3:	sload 4;
+					sspush 255;
+					smul;
+					sstore 5;
+				L4:	sspush 255;
+					sstore 6;
+				L5:	sload 5;
+					getfield_s_this 14;		// short SmartCard/SmartCard.avatarLen
+					if_scmple L7;
+				L6:	sspush -28415;
+					invokestatic 65;		// javacard/framework/ISOException.throwIt(S)V
+					goto L9;
+				L7:	sload 5;
+					sload 6;
+					sadd;
+					getfield_s_this 14;		// short SmartCard/SmartCard.avatarLen
+					if_scmple L9;
+				L8:	getfield_s_this 14;		// short SmartCard/SmartCard.avatarLen
+					sload 5;
+					ssub;
+					sstore 6;
+				L9:	aload_1;
+					invokevirtual 74;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					sload 6;
+					invokevirtual 76;		// javacard/framework/APDU.setOutgoingLength(S)V
+					getfield_a_this 13;		// reference SmartCard/SmartCard.avatar
+					sload 5;
+					aload_2;
+					sconst_0;
+					sload 6;
+					invokestatic 78;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload 6;
+					invokevirtual 79;		// javacard/framework/APDU.sendBytes(SS)V
+					return;
+		}
+
+	}
+
+}

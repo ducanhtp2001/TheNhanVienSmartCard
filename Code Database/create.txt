@@ -1,0 +1,68 @@
+smartcard
+
+
+CREATE TABLE PhongBan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tenPhongBan VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    doUuTien INT
+);
+
+CREATE TABLE ChucVu (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idPhongBan INT,
+    tenChucVu VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    doUuTien INT,
+    FOREIGN KEY (idPhongBan) REFERENCES PhongBan(id)
+);
+
+CREATE TABLE NhanVien (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    hoTen VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    ngaySinh VARCHAR(20),
+    gioiTinh VARCHAR(5),
+    queQuan VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    sdt VARCHAR(12),
+    gmail VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    idPhongBan INT,
+    idChucVu INT,
+    idCard VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    FOREIGN KEY (idPhongBan) REFERENCES PhongBan(id),
+    FOREIGN KEY (idChucVu) REFERENCES ChucVu(id)
+);
+
+CREATE TABLE Xe (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idNhanVien INT,
+    bienSo VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    LoaiXe VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id)
+);
+
+CREATE TABLE GuiXe (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idNhanVien INT,
+    idxe INT,
+    time DATETIME,
+    status INT,
+    FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id),
+    FOREIGN KEY (idxe) REFERENCES xe(id)
+);
+
+CREATE TABLE ChamCong (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idNhanVien INT,
+    time DATETIME,
+    status INT,
+    FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id)
+);
+
+
+
+
+
+drop table chamcong;
+drop table guixe;
+drop table xe;
+drop table nhanvien;
+drop table chucvu;
+drop table phongban;

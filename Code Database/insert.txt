@@ -1,0 +1,33 @@
+INSERT INTO PhongBan VALUES (null, 'Giám đốc', 0);
+INSERT INTO PhongBan VALUES (null, 'Kế Toán', 2);
+INSERT INTO PhongBan VALUES (null, 'Hồ Sơ', 2);
+INSERT INTO PhongBan VALUES (null, 'Nhân Sự', 3);
+INSERT INTO PhongBan VALUES (null, 'Bảo Vệ', 3);
+
+INSERT INTO ChucVu VALUES (null, 1, 'Giám đốc', 0);
+INSERT INTO ChucVu VALUES (null, 2, 'Trưởng Phòng', 1);
+INSERT INTO ChucVu VALUES (null, 2, 'Phó Phòng', 2);
+INSERT INTO ChucVu VALUES (null, 2, 'Nhân Viên Thường', 4);
+INSERT INTO ChucVu VALUES (null, 3, 'Trưởng Phòng', 1);
+INSERT INTO ChucVu VALUES (null, 3, 'Phó Phòng', 2);
+INSERT INTO ChucVu VALUES (null, 3, 'Nhân Viên Thường', 4);
+INSERT INTO ChucVu VALUES (null, 4, 'Trưởng Phòng', 1);
+INSERT INTO ChucVu VALUES (null, 4, 'Phó Phòng', 2);
+INSERT INTO ChucVu VALUES (null, 4, 'Nhân Viên Thường', 4);
+INSERT INTO ChucVu VALUES (null, 5, 'Trưởng Phòng', 1);
+INSERT INTO ChucVu VALUES (null, 5, 'Nhân Viên Thường', 4);
+
+INSERT INTO Xe VALUES (null, 3, '2727', 'oto');
+INSERT INTO Xe VALUES (null, 3, '0000', 'oto');
+INSERT INTO Xe VALUES (null, 4, '1111', 'oto');
+INSERT INTO Xe VALUES (null, 5, '2222', 'oto');
+INSERT INTO Xe VALUES (null, 3, '3333', 'oto');
+
+INSERT INTO GuiXe VALUES (null, 3, 1, now(), 1);
+INSERT INTO GuiXe VALUES (null, 3, 1, now(), 2);
+
+INSERT INTO ChamCong VALUES (null, 3, now(), 1);
+INSERT INTO ChamCong VALUES (null, 3, now(), 0);
+
+
+SELECT * FROM GuiXe JOIN Xe ON GuiXe.idxe = Xe.id WHERE GuiXe.idnhanvien = 3;

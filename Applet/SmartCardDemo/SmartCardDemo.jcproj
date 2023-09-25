@@ -1,0 +1,10 @@
+<JavaCardProject name="SmartCardDemo">
+<USER>
+<PKG name="SmartCard" aid="00 00 00 00 00" major="1" minor="0">
+<APPLET aid="00 00 00 00 00 00" instanceaid="" parameter="" authority="" privileges="" index="10768" name="SmartCard"/>
+<CLASS name="Pin"/>
+<CLASS name="Aes"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>
